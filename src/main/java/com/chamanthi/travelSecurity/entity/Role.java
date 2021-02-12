@@ -2,22 +2,29 @@ package com.chamanthi.travelSecurity.entity;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 public class Role extends BaseIdEntity {
 
 	private String name;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
 	@JoinTable(name = "permission_role", joinColumns = {
 			@JoinColumn(name = "role_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "permission_id", referencedColumnName = "id") })
 	private List<Permission> permissions;
+
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	@ManyToMany(mappedBy = "roles")
+	private List<User> users;
 
 	public String getName() {
 		return name;

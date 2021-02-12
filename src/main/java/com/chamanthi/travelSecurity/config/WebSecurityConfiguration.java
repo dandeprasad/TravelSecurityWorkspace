@@ -19,7 +19,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-
+/*	@Autowired
+	SocialAuthProvider socialAuthProvider;*/
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -43,6 +44,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//auth.authenticationProvider(socialAuthProvider);
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 

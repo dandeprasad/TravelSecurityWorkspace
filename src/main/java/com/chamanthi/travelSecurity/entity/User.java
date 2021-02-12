@@ -5,12 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +17,17 @@ public class User extends BaseIdEntity implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private String email;
 	private String username;
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	private String password;
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	private boolean enabled;
 	@Column(name = "phoneno")
 	private String PhoneNo;
@@ -42,7 +47,11 @@ public class User extends BaseIdEntity implements UserDetails {
 	@Column(name = "credentials_expired")
 	private boolean credentialsNonExpired;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.ALL })
 	@JoinTable(name = "role_user", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "role_id", referencedColumnName = "id") })

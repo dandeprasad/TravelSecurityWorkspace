@@ -65,7 +65,13 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 		converter.setKeyPair(new KeyStoreKeyFactory(new ClassPathResource("jwt.jks"), "password".toCharArray()).getKeyPair("jwt"));
 		return converter;
 	}
-
+/*   @Bean
+   public JwtAccessTokenConverter tokenEnhancer() {
+      JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+      converter.setSigningKey(privateKey);
+      converter.setVerifierKey(publicKey);
+      return converter;
+   }*/
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.jdbc(dataSource).passwordEncoder(passwordEncoder);
