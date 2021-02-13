@@ -2,13 +2,10 @@ package com.chamanthi.travelSecurity.service;
 
 import com.chamanthi.travelSecurity.Dao.ThirdPartyUserDao;
 import com.chamanthi.travelSecurity.Response.SocialUserResponse;
-import com.chamanthi.travelSecurity.entity.Permission;
-import com.chamanthi.travelSecurity.entity.Role;
 import com.chamanthi.travelSecurity.entity.User;
 import com.chamanthi.travelSecurity.helper.ThirdPartyUserHelper;
 import com.chamanthi.travelSecurity.repository.RoleRepository;
 import com.chamanthi.travelSecurity.repository.UserRepository;
-import com.chamanthi.travelSecurity.service.google.GoogleLoginService;
 import com.chamanthi.travelSecurity.vo.SocialUser;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
